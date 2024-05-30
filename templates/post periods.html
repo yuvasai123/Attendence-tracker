@@ -1,0 +1,55 @@
+
+<html>
+<head>
+	<link rel="stylesheet" href="{{ url_for('static', filename='post periods.css') }}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		function calc(){
+			var n =document.getElementById("hello").value;
+			var div=document.getElementById('jd')
+			
+			var para=document.getElementById('para')
+			para.style.display="block"
+			document.getElementById("submitBtn").style.display = "none";
+			
+			for(var i=0;i<n;i++)
+			{
+				var div=document.getElementById("jd");
+				
+				var p=document.createElement("input");
+				p.style.margin="15px";
+				p.type="text";
+				p.placeholder="SUBJECT"+" "+(i+1)+":";
+				p.id="names";
+				p.name="name"+(i+1);
+				div.appendChild(p);
+				var q=document.createElement("br");
+				div.appendChild(q);
+				
+			}
+			var btn=document.createElement("button");
+			btn.innerHTML="SUBMIT"
+			div.appendChild(btn);
+			
+			
+		}
+	</script>
+</head> 
+<body style="background-color: #1cb0f6;>
+	
+	<div class="jd">
+		<center>
+			<b><label>Enter no. of subjects in this cirriculum</label></b><br><br>
+			<input type="text" name="sub" class="form-control" style="width:20%" id="hello" placeholder="NO. OF SUBJECTS"><br>
+			<button onclick="calc()" class="btn" id="submitBtn" style="background-color: #FF7850; color: whitesmoke;">SUBMIT</button><br>
+			<p style="display:none;" id="para">Please enter the Subject names</p>
+			<div class="pad">
+				<form action="/create" id="jd" class="form-container" method="post">
+					
+				</form>
+			</div>
+		</center>
+	</div>
+</body>
+</html>

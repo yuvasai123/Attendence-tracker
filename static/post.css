@@ -1,0 +1,35 @@
+select{
+	width: 150px;
+	height: 45px;
+	margin-left: : 90px;
+	
+	margin-top: 90px;
+	text-decoration: none;
+    font-family: monospace;
+    font-size: 18px;
+    background-color:black;
+    color: white;
+    padding-left: 40px;
+    display: inline;
+}
+#post{
+	margin: 0px;
+}
+input[type="radio"]
+{
+	width: 30px;
+	height: 20px;
+	border-color: yellow;
+}
+label{
+	font-size: 25px;
+}
+.per{
+	padding-left: 20px
+}
+form{
+	padding: 10px;
+}
+.lab{
+	padding:-10px;
+}

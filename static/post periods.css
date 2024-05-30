@@ -1,0 +1,130 @@
+body{
+	background-color: #333;	
+	  
+  }
+  label{
+	  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	  color: whitesmoke;
+	  font-size: 25px;
+    letter-spacing: 2px;
+  }
+ p{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	  color: white;
+	  font-size: 25px;
+    letter-spacing: 2px;
+  }
+  
+  
+  form input{
+  width: 250px;
+  padding: 10px;
+  border-radius: 15px;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  outline: none;
+  }
+  form ::placeholder{
+  font-size: 20px
+  }
+  form input[type=text]{
+	  font-size: 15px;
+  }
+  form
+  .pad{
+	  margin: 30px;
+  }
+  .jd{
+	  margin-top: 50px;
+  }
+  #jd label{
+	  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	  color: whitesmoke;
+	  font-size: 20px;
+    text-shadow: -1px -5px 11px rgba(0,0,0,0.7);
+  }
+  #jd input:hover,
+  #jd input:focus {
+	border: 2px solid #FF7850;
+	box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+	background-color: white;
+  }
+  
+  button {
+   appearance: button;
+   background-color:  #FF7850;
+   border: none;
+
+  
+   color: #FFFFFF;
+   cursor: pointer;
+   display: inline-block;
+   font-size: 15px;
+   letter-spacing: .8px;
+   line-height: 20px;
+   margin: 0;
+   outline: none;
+   overflow: visible;
+   padding: 8px 19px;
+   text-align: center;
+   text-transform: uppercase;
+   touch-action: manipulation;
+   transform: translateZ(0);
+   transition: filter .2s;
+   user-select: none;
+   -webkit-user-select: none;
+   vertical-align: middle;
+   white-space: nowrap;
+  }
+  
+   #jd button:after {
+   background-clip: padding-box;
+   background-color:  #FF7850;
+   border: solid transparent;
+   border-radius: 16px;
+   border-width: 0 0 4px;
+   bottom: -4px;
+   content: "";
+   left: 0;
+   position: absolute;
+   right: 0;
+   top: 0;
+   z-index: -1;
+  }
+  
+  #jd button:main,  #jd button:focus {
+   user-select: auto;
+  }
+  
+  #jd button:hover:not(:disabled) {
+   filter: brightness(1.1);
+  }
+  
+  #jd button:disabled {
+   cursor: auto;
+  }
+  
+  #jd button:active:after {
+   border-width: 0 0 0px;
+  }
+  
+  #jd button:active {
+   padding-bottom: 10px;
+  }
+  #jd input{
+	   transition: opacity 1.5s ease, transform 12.5s ease;
+		transform: scale(0.8);
+  }
+  /* Add the animated class */
+  .pad {
+	  transition: opacity 1.5s ease, transform 2.5s ease;
+  }
+  
+ center{
+	margin:40px;
+ }
+ form button{
+	border-radius: 20px;
+ }

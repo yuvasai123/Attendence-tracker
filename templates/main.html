@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+	
+	<title>AdminHub</title>
+</head>
+<body>
+	
+	
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bx-calendar'></i>
+			<span class="text">Attendence Tracker</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				
+					<a href="#post">
+						<i class='bx bxs-shopping-bag-alt' ></i>
+						<span class="text">Post your attendence</span>
+					</a>
+				</form>
+			</li>
+			<li>
+				
+					<a href="#viewdata">
+						<i class='bx bxs-shopping-bag-alt' ></i>
+						<span class="text">View all attendence</span>
+					</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</section>
+	<!-- SIDEBAR -->
+	
+	
+	
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<button class="btn btn-primary" style="float: right; align-items: flex-end;" onclick="confirmLogout()">Logout</button>
+		</nav>
+		<!-- NAVBAR -->
+		
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Welcome  &nbsp;   {{user}}....</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+			
+			<ul class="box-info">
+				<li style="background-color:#decc71; color:white; font-weight:900;" >
+					
+					<span class="text text-light" >
+						<h2>{{ (pre_counts / (pre_counts + abs_counts+1) * 100) | round(2) }}  %</h2>
+						<p>Attendende<br> Percentage   </p>
+					</span>
+				</li>
+				<li style="background-color:#42c5f5; color:white; font-weight:900;">
+					
+					<span class="text">
+						<h1>{{pre_counts+abs_counts}}</h1>
+						<p>Total <br>Working Days </p>
+					</span>
+				</li>
+				<li style="background-color:#a69b38; color:white; font-weight:900;">
+					
+					<span class="text">
+						<h1>{{pre_counts}}</h1>
+						<p>Total<br> Present Days</p>
+					</span>
+				</li>
+				<li style="background-color:#dbd386; color:white;font-weight:900;">
+					
+					<span class="text">
+						<h1>{{abs_counts}}</h1>
+						<p>Total<br> Absent Days</p>
+					</span>
+				</li>
+			</ul>
+			
+			
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Subject Wise Status</h3>
+					</div>
+					<table >
+						<thead>
+							<tr>
+
+								<th>Subjects</th>
+								<th>Percentage</th>
+								<th>Presents</th>
+								<th>Absensts</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							{% for key in data %}
+							<tr>
+								<td value="{{key}}">{{key}}</td>
+								<td>{{(dict[key]["present"]/(dict[key]["present"]+dict[key]["absent"])*100) | round(2)}}</td>
+								<td>{{dict[key]["present"]}}</td>
+								<td>{{dict[key]["absent"]}}</td>
+							</tr>
+						</tbody>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+		</div>
+	</main>
+	<!-- MAIN -->
+</section>
+<!-- CONTENT -->
+
+<!-- 	POsting -->
+
+<section id="post">
+	
+	<main>
+		<div class="head-title">
+			<div class="left">
+				<h1>Post Your Attendence</h1>
+				<ul class="breadcrumb">
+					<li>
+						<a href="#">Dashboard</a>
+					</li>
+					<li><i class='bx bx-chevron-right' ></i></li>
+					<li>
+						<a class="active" href="#">Home</a>
+					</li>
+				</ul>
+			</div>
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Your Subjects</h3>
+						
+					</div>
+					<ul class="todo-list" style="background-color:"#f5bf42;">
+						{% for key in data %}
+						
+						<li value="{{key}}">{{key}}</li>
+						
+						
+						{% endfor %}
+						
+					</ul>
+				</div>
+				<div class="todo">
+					<div class="head">
+						<h3>Post your attendence</h3>
+					</div>
+					<center>
+						<form action="/enter" method="post" novalidate>
+							<input type="date" name="date" value="date"><br><br><br>
+							{% for i in range(0,per[0]) %}
+							<div class="dropdown">
+								<label>period{{i+1}}:</label>
+								<select name="sub{{i+1}}" id="cars" class="btn bg-light">
+									{% for key in data %}
+									<ul class="dropdown-menu">
+										<option value="{{key}}">{{key}}</option>
+									</ul>
+									
+									{% endfor %}
+								</select>
+								<input type="radio" name="options{{i+1}}" value="pre">
+								<label>present</label>
+								<input type="radio" name="options{{i+1}}" value="abs">
+								<label>absemt</label>      
+								<br><br>
+								{% endfor %}
+							</div>
+							<button class="btn btn-primary" onclick="checkCondition()">SUBMIT</button>
+						</form>
+					</center>
+				</div>
+			</div>
+			
+		</main>
+		
+	</section>
+	<section id="viewdata">
+		<main>
+			<div class="todo">
+				<form action="/view attendence" method="post">
+					
+					
+					
+					<center>
+						<div class="dates ">
+							<label>FROM DATE  :  </label>
+							<input type="date" name="fromdate" value="fromdate" class="btn btn-primary"><br><br><br>
+							<label>TO DATE  :  </label>
+							<input type="date" name="todate" value="todate"  class="btn btn-primary"><br><br><br>
+							<button  class="btn"style="background:#6c966b;color:white">SUBMIT</button><br>
+						</div>
+						
+						<table class="table table-bordered table-striped"><br>
+							<thead>
+								<tr>
+									<th>Date</th>
+									{% for row in range(0,per[0]) %}
+									<th>period1</th>
+									{% endfor %}
+								</tr>
+							</thead>
+							<tbody>
+								{% for row in query %}
+								<tr>
+									<td>{{ row[0] }}</td>
+									{% for cell in row[1:] %}
+									<td>{{ cell }}</td>
+									{% endfor %}
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table> 
+					</center>
+				</div>
+			</div>
+		</form>
+	</main>
+	</section
+	
+	
+	<!-- 	POsting -->
+	<script>
+		function checkCondition() {
+			var condition = true; // This can be any condition
+			if (condition) {
+				alert("Data inserted successfully!");
+			} else {
+				alert("Data insertion failed!");
+			}
+		}
+		document.addEventListener('DOMContentLoaded', function() {
+			{% if scroll_to %}
+			const section = document.getElementById('{{ scroll_to }}');
+			if (section) {
+				window.scrollTo({
+					top: section.offsetTop,
+					behavior: 'smooth'
+				});
+			}
+			{% endif %}
+		}
+		);
+		
+			function confirmLogout() {
+				if (confirm("Are you sure you want to logout?")) {
+					window.location.href = "{{ url_for('logout') }}";
+				}
+			}
+			
+	</script>
+</body>
+</html>
